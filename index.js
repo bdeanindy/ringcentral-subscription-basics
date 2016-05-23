@@ -4,6 +4,7 @@
 require('dotenv').config(); // If using this in multi-environment (local and deployed versions) might want to add logic for checking NODE_ENV environment variable to load only if local
 var RC = require('ringcentral');
 var Helpers = require('ringcentral-helpers');
+var http = require('http');
 
 // Initialize the RC SDK
 var sdk = new RC({
@@ -14,9 +15,9 @@ var sdk = new RC({
 });
 
 // APP VARS
+var server = http.createServer();
 var Message = Helpers.message();
 var platform = sdk.platform();
-var platform_SA = sdk_SA.platform();
 var subscription = sdk.createSubscription();
 
 // Login to the RingCentral Platform
@@ -37,6 +38,8 @@ function login() {
         });
 }
 
+login();
+
 function init() {
     var extensions = [];
     var page = 1;
@@ -45,19 +48,21 @@ function init() {
 
         return platform
             .get('/account/~/extension', {
+                type: 'User',
+                status: 'Enabled',
                 page: page,
                 perPage: process.env.EXTENSIONS_PER_PAGE //REDUCE NUMBER TO SPEED BOOTSTRAPPING
             })
             .then(function (response) {
                 //console.log("The extension response contained:", JSON.stringify(response.json(), null, 2));
                 var data = response.json();
-                console.log("************** THE NUMBER OF EXTENSIONS ARE : ***************", data.records.length);
+                //console.log("************** THE NUMBER OF EXTENSIONS ARE : ***************", data.records.length);
                 extensions = extensions.concat(data.records);
                 if (data.navigation.nextPage) {
                     page++;
                     return getExtensionsPage(); // this will be chained
                 } else {
-                    return devices; // this is the finally resolved thing
+                    return extensions; // this is the finally resolved thing
                 }
             });
 
@@ -67,10 +72,6 @@ function init() {
      Loop until you capture all extensions
      */
     return getExtensionsPage()
-        .then(function (extensions) {
-            console.log("************** The total extensions are : **********", extensions.length);
-            return extensions.filter(getPhysicalDevices);
-        })
         .then(createEventFilter)
         .then(startSubscription)
         .catch(function (e) {
@@ -81,12 +82,13 @@ function init() {
 }
 
 function createEventFilter(extensions) {
-    console.log("********* CREATING EVENT FILTERS ***************");
+    //console.log("********* CREATING EVENT FILTERS ***************");
     var _eventFilters = [];
     for(var i = 0; i < extensions.length; i++) {
         var extension = extensions[i];
         _eventFilters.push(generatePresenceEventFilter(extension));
     }
+    //console.log('EVENT FILTERS: ', _eventFilters);
     return _eventFilters;
 }
 
@@ -97,12 +99,12 @@ function generatePresenceEventFilter(item) {
         throw new Error('Message-Dispatcher Error: generatePresenceEventFilter requires a parameter');
     } else {
         //console.log("The Presence Filter added for the extension :" + item.extension.id + ' : /account/~/extension/' + item.extension.id + '/presence?detailedTelephonyState=true');
-        return '/account/~/extension/' + item.extension.id + '/presence?detailedTelephonyState=true';
+        return '/account/~/extension/' + item.id + '/presence?detailedTelephonyState=true';
     }
 }
 
 function startSubscription(eventFilters) { //FIXME MAJOR Use devices list somehow
-    console.log("********* STARTING TO CREATE SUBSCRIPTION ON ALL FILTERED DEVICES ***************");
+    //console.log("********* STARTING TO CREATE SUBSCRIPTION ON ALL FILTERED DEVICES ***************");
     return subscription
         .setEventFilters(eventFilters)
         .register();
@@ -127,7 +129,7 @@ subscription.on(subscription.events.subscribeError, handleSubscribeError);
 
 // Define Event Handlers
 function handleSubscriptionNotification(msg) {
-    console.log('SUBSCRIPTION NOTIFICATION DATA: ', data);
+    console.log('SUBSCRIPTION NOTIFICATION: ', msg);
 }
 
 function handleRemoveSubscriptionSuccess(data) {
@@ -159,7 +161,7 @@ function handleSubscribeError(data) {
  **/
 function handleLoginSuccess(data) {
     // UNCOMMENT TO VIEW LOGIN DATA
-    //console.log('LOGIN SUCCESS DATA: ', data);
+    console.log('LOGIN SUCCESS DATA: ', data.json());
 }
 
 function handleLoginError(data) {
@@ -182,4 +184,20 @@ function handleRefreshError(data) {
     console.log('REFRESH FAILURE DATA: ', data);
     console.log('Initialing Login again :');
     login();
+}
+
+server.listen(process.env.PORT);
+server.on('listening', function() {
+    console.log('Server is listening on port: ', process.env.PORT);
+});
+server.on('close', function() {
+    console.log('Server has closed and is no longer accepting connections');
+});
+server.on('error', function(err) {
+    console.error(err);
+});
+server.on('request', inboundRequest);
+
+function inboundRequest(req, res) {
+    console.log('Inbound Request');
 }
