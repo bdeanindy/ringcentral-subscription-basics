@@ -17,12 +17,13 @@ This is only a demo application to show how to use Subscriptions properly with t
 1. Clone `git clone https://github.com/bdeanindy/ringcentral-subscription-basics` this repository and `cd ringcentral-subscription-basics` into the project directory
 2. Install the dependencies `npm install`
 3. Configure your environment `cp .env.tmpl .env`
-4. Create an application in [RingCentral Developer Portal](https://developers.ringcentral.com/my-account.html#/create-app) with the following parameters:
+4. Open the `.env` file and copy/paste your API keys and user credentials into this file, then save/close it. 
+5. Create an application in [RingCentral Developer Portal](https://developers.ringcentral.com/my-account.html#/create-app) with the following parameters:
     * Platform Type: Server-only (No UI)
     * Application Type: Private
     * Permissions Needed: Read Accounts, Read Call Log, Read Presence
     * Name/Description: What you choose, but I always use something easy to identify in lists
-5. Populate your environment file with your Application and Admin user data (the keys in the `.env` file should be pretty straight forward)
+6. Populate your environment file with your Application and Admin user data (the keys in the `.env` file should be pretty straight forward)
 
 
 ## Operation
