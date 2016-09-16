@@ -1,0 +1,122 @@
+{
+    "name": "RingCentral Subscription Basics",
+    "description": "Easy way for developers to stand up an application to watch for all event types on all extensions in their RingCentral accounts",
+    "repository": "https://github.com/bdeanindy/ringcentral-subscription-basics",
+    "logo": "https://github.com/bdeanindy/ringcentral-subscription-basics/img/ringcentral-logo.png",
+    "keywords": [
+        "RingCentral",
+        "Ring Central",
+        "ringcentral",
+        "ring central",
+        "subscription",
+        "subscriptions",
+        "events",
+        "event driven",
+        "pubnub",
+        "pubsub"
+    ],
+    "website": "https://developers.ringcentral.com",
+    "addons": [
+        "papertrail": {
+            "plan": "choklad"
+        }
+    ],
+    "formation": {
+        "web": {
+            "quantity": 1,
+            "size": "free"
+        }
+    },
+    "env": {
+        "PORT": {
+            "description": "The port upon which this application operates",
+            "required": true,
+            "value": 3000
+        },
+        "RC_ENV": {
+            "description": "Will this be operating with a RingCentral Sandbox or Production account? accepts either: 'sandbox' or 'production'",
+            "required": true,
+            "value": "sandbox"
+        },
+        "RC_API_BASE_URL": {
+            "description": "The URL to send all HTTP requests for the RingCentral Sandbox API",
+            "required": true,
+            "value": "https://platform.devtest.ringcentral.com"
+        },
+        "RC_APP_KEY": {
+            "description": "Your RingCentral Sandbox Application Key from the Developer Portal",
+            "required": true
+        },
+        "RC_APP_SECRET": {
+            "description": "Your RingCentral Sandbox Application Secret from the Developer Portal",
+            "required": true
+        },
+        "RC_USERNAME": {
+            "description": "Your RingCentral Sandbox Account Administrative Username (phone number). Expected format: [countryCode][numberWithoutSpecialCharactersParensOrHyphens], example: 12345678901",
+            "required": true
+        },
+        "RC_PASSWORD": {
+            "description": "Your RingCentral Sandbox Account Administrative User Password",
+            "required": true
+        },
+        "RC_EXTENSION: {
+            "description": "Your RingCentral Sandbox Account Administrative User Extension Number"
+        },
+        "RC_CACHE_PREFIX: {
+            "description": "The cache prefix to use if you modify the source code to implement multiple instances of the SDK for different subscriptions across accounts"
+        },
+        "PROD_RC_API_BASE_URL": {
+            "description": "The URL to send all HTTP requests for the RingCentral ProductionAPI",
+            "required": true,
+            "value": "https://platform.ringcentral.com"
+        },
+        "PROD_RC_APP_KEY": {
+            "description": "Your RingCentral Production Application Key from the Developer Portal for the associated application",
+            "required": true
+        },
+        "PROD_RC_APP_SECRET": {
+            "description": "Your RingCentral Production Application Secret from the Developer Portal",
+            "required": true
+        },
+        "PROD_RC_USERNAME": {
+            "description": "Your RingCentral Production Account Administrative Username (phone number). Expected format: [countryCode][numberWithoutSpecialCharactersParensOrHyphens], example: 12345678901",
+            "required": true
+        },
+        "PROD_RC_PASSWORD": {
+            "description": "Your RingCentral Production Account Administrative User Password",
+            "required": true
+        },
+        "PROD_RC_EXTENSION: {
+            "description": "Your RingCentral Production  Account Administrative User Extension Number"
+        },
+        "EXTENSIONS_PER_PAGE": {
+            "description": "Number of Extensions to request per page, default number is optimal value for loading speed and performance. Lower numbers boot faster.",
+            "required": true,
+            "value": 500
+        },
+        "SUBSCRIBE_TO_EXTENSION_EVENTS": {
+            "description": "Subscribe to status events for extensions? (accepts: true -or- false)",
+            "required": true,
+            "value": true
+        },
+        "SUBSCRIBE_TO_PRESENCE_EVENTS": {
+            "description": "Subscribe to presence events for extensions (uses detailedTelephonyStatus and aggregated set to true)? (accepts: true -or- false)",
+            "required": true,
+            "value": true
+        },
+        "SUBSCRIBE_TO_MESSAGE_STORE_EVENTS": {
+            "description": "Subscribe to message store events for extensions? (accepts: true -or- false)",
+            "required": true,
+            "value": true
+        },
+        "SUBSCRIBE_TO_PRESENCE_LINE_EVENTS": {
+            "description": "Subscribe to presence line events for extensions? (accepts: true -or- false)",
+            "required": true,
+            "value": true
+        },
+        "SUBSCRIBE_TO_INSTANT_MESSAGE_EVENTS": {
+            "description": "Subscribe to instant message (sms) events for extensions? (accepts: true -or- false)",
+            "required": true,
+            "value": true
+        }
+    } }
