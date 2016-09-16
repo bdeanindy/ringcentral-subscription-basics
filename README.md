@@ -12,7 +12,9 @@ This is only a demo application to show how to use Subscriptions properly with t
 * Have configured your Sandbox Account to have one or more extensions which allow presence to be monitored. [Read how to setup Presence monitoring here](http://success.ringcentral.com/articles/en_US/RC_Knowledge_Article/How-to-choose-specific-user-extensions-to-monitor-for-Presence)
 * Node.js installed locally
 
-## Setup
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bdeanindy/ringcentral-subscription-basics)
+
+## Local Setup
 
 1. Clone `git clone https://github.com/bdeanindy/ringcentral-subscription-basics` this repository and `cd ringcentral-subscription-basics` into the project directory
 2. Install the dependencies `npm install`
