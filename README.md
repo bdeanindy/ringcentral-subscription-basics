@@ -4,6 +4,10 @@ This is a demo application showing how to use RingCentral Push Notifications usi
 
 This is only a demo application to show how to use Subscriptions properly with the [RingCentral-JS](https://github.com/ringcentral/ringcentral-js) SDK. This code should not be used directly in production, but can be used for PoC development and testing.
 
+You are able to configure this application to operate with either your RingCentral Sandbox or Production applications in the `.env` file by setting the `RC_ENV` value to either `sandbox` or `production`.
+
+You can also set this application to use any of the RingCentral Subscription Notification Types (they are all enabled by default) in the `.env` file. Read the API Reference for [Notification Event Types](https://developers.ringcentral.com/api-docs/latest/index.html#!#EventTypes.html) to understand more about these options.
+
 ## Prerequisites
 
 * Valid RingCentral Account

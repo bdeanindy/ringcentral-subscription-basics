@@ -36,56 +36,27 @@
             "required": true,
             "value": "sandbox"
         },
-        "RC_API_BASE_URL": {
-            "description": "The URL to send all HTTP requests for the RingCentral Sandbox API",
-            "required": true,
-            "value": "https://platform.devtest.ringcentral.com"
-        },
         "RC_APP_KEY": {
-            "description": "Your RingCentral Sandbox Application Key from the Developer Portal",
+            "description": "Your RingCentral Application Key from the Developer Portal",
             "required": true
         },
         "RC_APP_SECRET": {
-            "description": "Your RingCentral Sandbox Application Secret from the Developer Portal",
+            "description": "Your RingCentral Application Secret from the Developer Portal",
             "required": true
         },
         "RC_USERNAME": {
-            "description": "Your RingCentral Sandbox Account Administrative Username (phone number). Expected format: [countryCode][numberWithoutSpecialCharactersParensOrHyphens], example: 12345678901",
+            "description": "Your RingCentral Account Administrative Username (phone number). Expected format: [countryCode][numberWithoutSpecialCharactersParensOrHyphens], example: 12345678901",
             "required": true
         },
         "RC_PASSWORD": {
-            "description": "Your RingCentral Sandbox Account Administrative User Password",
+            "description": "Your RingCentral Account Administrative User Password",
             "required": true
         },
         "RC_EXTENSION": {
-            "description": "Your RingCentral Sandbox Account Administrative User Extension Number"
+            "description": "Your RingCentral Account Administrative User Extension Number"
         },
         "RC_CACHE_PREFIX": {
             "description": "The cache prefix to use if you modify the source code to implement multiple instances of the SDK for different subscriptions across accounts"
-        },
-        "PROD_RC_API_BASE_URL": {
-            "description": "The URL to send all HTTP requests for the RingCentral ProductionAPI",
-            "required": true,
-            "value": "https://platform.ringcentral.com"
-        },
-        "PROD_RC_APP_KEY": {
-            "description": "Your RingCentral Production Application Key from the Developer Portal for the associated application",
-            "required": true
-        },
-        "PROD_RC_APP_SECRET": {
-            "description": "Your RingCentral Production Application Secret from the Developer Portal",
-            "required": true
-        },
-        "PROD_RC_USERNAME": {
-            "description": "Your RingCentral Production Account Administrative Username (phone number). Expected format: [countryCode][numberWithoutSpecialCharactersParensOrHyphens], example: 12345678901",
-            "required": true
-        },
-        "PROD_RC_PASSWORD": {
-            "description": "Your RingCentral Production Account Administrative User Password",
-            "required": true
-        },
-        "PROD_RC_EXTENSION": {
-            "description": "Your RingCentral Production  Account Administrative User Extension Number"
         },
         "EXTENSIONS_PER_PAGE": {
             "description": "Number of Extensions to request per page, default number is optimal value for loading speed and performance. Lower numbers boot faster.",

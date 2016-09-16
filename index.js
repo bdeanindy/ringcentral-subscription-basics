@@ -7,38 +7,18 @@ var Helpers = require('ringcentral-helpers');
 var http = require('http');
 var util = require('util');
 
-// Vars 
-var rcServer, rcAppKey, rcAppSecret, rcUsername, rcPassword, rcExtension, rcCachePrefix;
-
-// Set by environment
-switch(process.env.RC_ENV) {
-    case 'production':
-        rcServer        = process.env.PROD_RC_API_BASE_URL;
-        rcAppKey        = process.env.PROD_RC_APP_KEY;
-        rcAppSecret     = process.env.PROD_RC_APP_SECRET;
-        rcUsername      = process.env.PROD_RC_USERNAME;
-        rcPassword      = process.env.PROD_RC_PASSWORD;
-        rcExtension     = process.env.PROD_RC_EXTENSION;
-        rcCachePrefix   = process.env.PROD_RC_CACHE_PREFIX;
-    break;
-
-    case 'sandbox':
-        rcServer        = process.env.RC_API_BASE_URL;
-        rcAppKey        = process.env.RC_APP_KEY;
-        rcAppSecret     = process.env.RC_APP_SECRET;
-        rcUsername      = process.env.RC_USERNAME;
-        rcPassword      = process.env.RC_PASSWORD;
-        rcExtension     = process.env.RC_EXTENSION;
-        rcCachePrefix   = process.env.RC_CACHE_PREFIX;
-    break;
-}
+// Set the RingCentral API Base URL based upon environment
+var rcServer = ('production' === process.env.RC_ENV)
+    ? 'https://platform.ringcentral.com'
+    : 'https://platform.devtest.ringcentral.com'
+    ;
 
 // Initialize the RC SDK
 var sdk = new RC({
     server: rcServer,
-    appKey: rcAppKey,
-    appSecret: rcAppSecret,
-    cachePrefix: rcCachePrefix
+    appKey: process.env.RC_APP_KEY,
+    appSecret: process.env.RC_APP_SECRET,
+    cachePrefix: process.env.RC_CACHE_PREFIX
 });
 
 // APP VARS
@@ -50,9 +30,9 @@ var subscription = sdk.createSubscription();
 // Login to the RingCentral Platform
 function login() {
     return platform.login({
-            username: rcUsername,
-            password: rcPassword,
-            extension: rcExtension
+            username: process.env.RC_USERNAME,
+            password: process.env.RC_PASSWORD,
+            extension: process.env.RC_EXTENSION
         })
         .then(function (response) {
             console.log("Succesfully logged into the RC Account");
