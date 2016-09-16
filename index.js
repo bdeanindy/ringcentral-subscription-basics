@@ -1,7 +1,7 @@
 'use strict';
 
 // Deps
-require('dotenv').load(); // If using this in multi-environment (local and deployed versions) might want to add logic for checking NODE_ENV environment variable to load only if local
+if('production' !== process.env.NODE_ENV) require('dotenv').config(); // If using this in multi-environment (local and deployed versions) might want to add logic for checking NODE_ENV environment variable to load only if local
 var RC = require('ringcentral');
 var Helpers = require('ringcentral-helpers');
 var http = require('http');
