@@ -114,14 +114,7 @@ function createEventFilter(extensions) {
     for(var i = 0; i < extensions.length; i++) {
         var extension = extensions[i];
         console.log('EXTENSION: ', extension);
-        // BDean RC Starter Sandbox Account
-        if(133128004 === extension.id) {
-            _eventFilters.push(generatePresenceEventFilter(extension));
-        }
-        // BDean RC Starter Production Account
-        if(2557490012 === extension.id) {
-            _eventFilters.push(generatePresenceEventFilter(extension));
-        }
+        _eventFilters.push(generatePresenceEventFilter(extension));
     }
     //console.log('EVENT FILTERS: ', _eventFilters);
     return _eventFilters;
