@@ -1,4 +1,4 @@
-[!RingCentralDeveloperPlatformBeta](https://raw.githubusercontent.com/bdeanindy/ringcentral-subscription-basics/master/rc4d_logo_2016.png)
+![RingCentral Developer Platform](https://raw.githubusercontent.com/bdeanindy/ringcentral-subscription-basics/master/rc4d_logo_2016.png)
 
 # RingCentral Subscription Basic Demo App
 
