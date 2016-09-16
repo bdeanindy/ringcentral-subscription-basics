@@ -5,13 +5,40 @@ require('dotenv').config(); // If using this in multi-environment (local and dep
 var RC = require('ringcentral');
 var Helpers = require('ringcentral-helpers');
 var http = require('http');
+var util = require('util');
+
+// Vars 
+var rcServer, rcAppKey, rcAppSecret, rcUsername, rcPassword, rcExtension, rcCachePrefix;
+
+// Set by environment
+switch(process.env.RC_ENV) {
+    case 'production':
+        rcServer        = process.env.PROD_RC_API_BASE_URL;
+        rcAppKey        = process.env.PROD_RC_APP_KEY;
+        rcAppSecret     = process.env.PROD_RC_APP_SECRET;
+        rcUsername      = process.env.PROD_RC_USERNAME;
+        rcPassword      = process.env.PROD_RC_PASSWORD;
+        rcExtension     = process.env.PROD_RC_EXTENSION;
+        rcCachePrefix   = process.env.PROD_RC_CACHE_PREFIX;
+    break;
+
+    case 'sandbox':
+        rcServer        = process.env.RC_API_BASE_URL;
+        rcAppKey        = process.env.RC_APP_KEY;
+        rcAppSecret     = process.env.RC_APP_SECRET;
+        rcUsername      = process.env.RC_USERNAME;
+        rcPassword      = process.env.RC_PASSWORD;
+        rcExtension     = process.env.RC_EXTENSION;
+        rcCachePrefix   = process.env.RC_CACHE_PREFIX;
+    break;
+}
 
 // Initialize the RC SDK
 var sdk = new RC({
-    server: process.env.RC_API_BASE_URL,
-    appKey: process.env.RC_APP_KEY,
-    appSecret: process.env.RC_APP_SECRET,
-    cachePrefix: process.env.RC_CACHE_PREFIX
+    server: rcServer,
+    appKey: rcAppKey,
+    appSecret: rcAppSecret,
+    cachePrefix: rcCachePrefix
 });
 
 // APP VARS
@@ -23,9 +50,9 @@ var subscription = sdk.createSubscription();
 // Login to the RingCentral Platform
 function login() {
     return platform.login({
-            username: process.env.RC_USERNAME,
-            password: process.env.RC_PASSWORD,
-            extension: process.env.RC_EXTENSION
+            username: rcUsername,
+            password: rcPassword,
+            extension: rcExtension
         })
         .then(function (response) {
             console.log("Succesfully logged into the RC Account");
@@ -47,7 +74,7 @@ function init() {
     function getExtensionsPage() {
 
         return platform
-            .get('/account/~/extension', {
+            .get('/account/~/extension/', {
                 type: 'User',
                 status: 'Enabled',
                 page: page,
@@ -86,7 +113,15 @@ function createEventFilter(extensions) {
     var _eventFilters = [];
     for(var i = 0; i < extensions.length; i++) {
         var extension = extensions[i];
-        _eventFilters.push(generatePresenceEventFilter(extension));
+        console.log('EXTENSION: ', extension);
+        // BDean RC Starter Sandbox Account
+        if(133128004 === extension.id) {
+            _eventFilters.push(generatePresenceEventFilter(extension));
+        }
+        // BDean RC Starter Production Account
+        if(2557490012 === extension.id) {
+            _eventFilters.push(generatePresenceEventFilter(extension));
+        }
     }
     //console.log('EVENT FILTERS: ', _eventFilters);
     return _eventFilters;
@@ -95,11 +130,10 @@ function createEventFilter(extensions) {
 function generatePresenceEventFilter(item) {
     //console.log("The item is :", item);
     if (!item) {
-        ;
         throw new Error('Message-Dispatcher Error: generatePresenceEventFilter requires a parameter');
     } else {
-        //console.log("The Presence Filter added for the extension :" + item.extension.id + ' : /account/~/extension/' + item.extension.id + '/presence?detailedTelephonyState=true');
-        return '/account/~/extension/' + item.id + '/presence?detailedTelephonyState=true';
+        console.log("The Presence Filter added for the extension :" + item.id + ' : /account/~/extension/' + item.id + '/presence?detailedTelephonyState=true&aggregated=true');
+        return '/account/~/extension/' + item.id + '/presence?detailedTelephonyState=true&aggregated=true';
     }
 }
 
@@ -129,7 +163,8 @@ subscription.on(subscription.events.subscribeError, handleSubscribeError);
 
 // Define Event Handlers
 function handleSubscriptionNotification(msg) {
-    console.log('SUBSCRIPTION NOTIFICATION: ', msg);
+    console.log('SUBSCRIPTION NOTIFICATION.....');
+    console.log(util.inspect(msg, {showHidden: true, depth: null}));
 }
 
 function handleRemoveSubscriptionSuccess(data) {
