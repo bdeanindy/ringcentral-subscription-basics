@@ -1,3 +1,5 @@
+[!RingCentralDeveloperPlatformBeta](https://raw.githubusercontent.com/bdeanindy/ringcentral-subscription-basics/master/rc4d_logo_2016.png)
+
 # RingCentral Subscription Basic Demo App
 
 This is a demo application showing how to use RingCentral Push Notifications using the JS SDK. This application will GET all the Extensions (Enabled + User) in your RingCentral account (based on the environment, but defaults to Sandbox) and will add eventFilters in a single Subscription that will then receive Presence Events for these Extensions. The data from these presence events is then logged in the console of the application for you to review, and if you choose, filter and then execute external REST requests using the embedded HTTP server.
