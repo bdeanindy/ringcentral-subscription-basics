@@ -53,10 +53,12 @@
             "required": true
         },
         "RC_EXTENSION": {
-            "description": "Your RingCentral Account Administrative User Extension Number"
+            "description": "Your RingCentral Account Administrative User Extension Number",
+            "required": false
         },
         "RC_CACHE_PREFIX": {
-            "description": "The cache prefix to use if you modify the source code to implement multiple instances of the SDK for different subscriptions across accounts"
+            "description": "The cache prefix to use if you modify the source code to implement multiple instances of the SDK for different subscriptions across accounts",
+            "required": false
         },
         "EXTENSIONS_PER_PAGE": {
             "description": "Number of Extensions to request per page, default number is optimal value for loading speed and performance. Lower numbers boot faster.",
