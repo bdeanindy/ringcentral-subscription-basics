@@ -1,8 +1,8 @@
 {
-    "name": "ringcentral-subscriptions-demo",
+    "name": "rc-subscription-demo",
     "description": "Easy way for developers to stand up an application to watch for all event types on all extensions in their RingCentral accounts",
     "repository": "https://github.com/bdeanindy/ringcentral-subscription-basics",
-    "logo": "https://github.com/bdeanindy/ringcentral-subscription-basics/rc4d_logo_2016.png",
+    "logo": "https://raw.githubusercontent.com/bdeanindy/ringcentral-subscription-basics/master/rc4d_logo_2016.png",
     "keywords": [
         "RingCentral",
         "Ring Central",
@@ -16,9 +16,6 @@
         "pubsub"
     ],
     "website": "https://developers.ringcentral.com",
-    "addons": [
-        "papertrail"
-    ],
     "formation": {
         "web": {
             "quantity": 1,
