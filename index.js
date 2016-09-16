@@ -111,23 +111,18 @@ function init() {
 function createEventFilter(extensions) {
     //console.log("********* CREATING EVENT FILTERS ***************");
     var _eventFilters = [];
+    var messageType = messageType || 'SMS'; // SMS is the default message type in RC-API as of 2016-09-16
     for(var i = 0; i < extensions.length; i++) {
         var extension = extensions[i];
-        console.log('EXTENSION: ', extension);
-        _eventFilters.push(generatePresenceEventFilter(extension));
+        //console.log('EXTENSION: ', extension);
+        if(process.env.SUBSCRIBE_TO_EXTENSION_EVENTS) _eventFilters.push('/account/~/extension/' + extension.id);
+        if(process.env.SUBSCRIBE_TO_PRESENCE_EVENTS) _eventFilters.push('/account/~/extension/' + extension.id + '/presence?detailedTelephonyState=true&aggregated=true');
+        if(process.env.SUBSCRIBE_TO_MESSAGE_STORE_EVENTS) _eventFilters.push('/account/~/extension/' + extension.id + '/message-store');
+        if(process.env.SUBSCRIBE_TO_PRESENCE_LINE_EVENTS) _eventFilters.push('/account/~/extension/' + extension.id + '/presence/line');
+        if(process.env.SUBSCRIBE_TO_INSTANT_MESSAGE_EVENTS) _eventFilters.push('/account/~/extension/' + extension.id + '/message-store/instant?type=' + messageType);
     }
-    //console.log('EVENT FILTERS: ', _eventFilters);
+    console.log('EVENT FILTERS: ', _eventFilters);
     return _eventFilters;
-}
-
-function generatePresenceEventFilter(item) {
-    //console.log("The item is :", item);
-    if (!item) {
-        throw new Error('Message-Dispatcher Error: generatePresenceEventFilter requires a parameter');
-    } else {
-        console.log("The Presence Filter added for the extension :" + item.id + ' : /account/~/extension/' + item.id + '/presence?detailedTelephonyState=true&aggregated=true');
-        return '/account/~/extension/' + item.id + '/presence?detailedTelephonyState=true&aggregated=true';
-    }
 }
 
 function startSubscription(eventFilters) { //FIXME MAJOR Use devices list somehow
