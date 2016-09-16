@@ -2,7 +2,7 @@
     "name": "ringcentral-subscriptions-demo",
     "description": "Easy way for developers to stand up an application to watch for all event types on all extensions in their RingCentral accounts",
     "repository": "https://github.com/bdeanindy/ringcentral-subscription-basics",
-    "logo": "https://github.com/bdeanindy/ringcentral-subscription-basics/img/ringcentral-logo.png",
+    "logo": "https://github.com/bdeanindy/ringcentral-subscription-basics/rc4d_logo_2016.png",
     "keywords": [
         "RingCentral",
         "Ring Central",
