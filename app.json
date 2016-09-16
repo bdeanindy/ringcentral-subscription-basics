@@ -28,11 +28,6 @@
     ],
     "website": "https://developers.ringcentral.com",
     "env": {
-        "PORT": {
-            "description": "The port upon which this application operates",
-            "required": true,
-            "value": 3000
-        },
         "RC_ENV": {
             "description": "Will this be operating with a RingCentral Sandbox or Production account? accepts either: 'sandbox' or 'production'",
             "required": true,
