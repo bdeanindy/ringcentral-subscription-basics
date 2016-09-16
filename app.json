@@ -57,10 +57,10 @@
             "description": "Your RingCentral Sandbox Account Administrative User Password",
             "required": true
         },
-        "RC_EXTENSION: {
+        "RC_EXTENSION": {
             "description": "Your RingCentral Sandbox Account Administrative User Extension Number"
         },
-        "RC_CACHE_PREFIX: {
+        "RC_CACHE_PREFIX": {
             "description": "The cache prefix to use if you modify the source code to implement multiple instances of the SDK for different subscriptions across accounts"
         },
         "PROD_RC_API_BASE_URL": {
@@ -84,7 +84,7 @@
             "description": "Your RingCentral Production Account Administrative User Password",
             "required": true
         },
-        "PROD_RC_EXTENSION: {
+        "PROD_RC_EXTENSION": {
             "description": "Your RingCentral Production  Account Administrative User Extension Number"
         },
         "EXTENSIONS_PER_PAGE": {
