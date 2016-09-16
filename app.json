@@ -17,7 +17,7 @@
     ],
     "website": "https://developers.ringcentral.com",
     "addons": [
-        "papertrail:choklad"
+        "papertrail"
     ],
     "formation": {
         "web": {
