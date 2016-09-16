@@ -16,7 +16,15 @@
         "pubsub"
     ],
     "addons": [
-        "papertrail"
+        {
+            "plan": "papertrail:choklad"
+        }
+    ],
+    "formation": [
+        {
+            "type": "web",
+            "quantity": 1
+        }
     ],
     "website": "https://developers.ringcentral.com",
     "env": {
