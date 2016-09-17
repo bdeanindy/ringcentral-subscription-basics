@@ -60,7 +60,7 @@
         "EXTENSIONS_PER_PAGE": {
             "description": "Number of Extensions to request per page, default number is optimal value for loading speed and performance. Lower numbers boot faster.",
             "required": true,
-            "value": 500
+            "value": "500"
         },
         "SUBSCRIBE_TO_EXTENSION_EVENTS": {
             "description": "Subscribe to status events for extensions? (accepts: true -or- false)",
