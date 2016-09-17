@@ -18,7 +18,7 @@ You can also set this application to use any of the RingCentral Subscription Not
 * Have configured your Sandbox Account to have one or more extensions which allow presence to be monitored. [Read how to setup Presence monitoring here](http://success.ringcentral.com/articles/en_US/RC_Knowledge_Article/How-to-choose-specific-user-extensions-to-monitor-for-Presence)
 * Node.js installed locally
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/bdeanindy/ringcentral-subscription-basics)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
 ## Local Setup
 
