@@ -22,7 +22,7 @@
     ],
     "formation": [
         {
-            "type": "web",
+            "process": "web",
             "quantity": 1
         }
     ],
