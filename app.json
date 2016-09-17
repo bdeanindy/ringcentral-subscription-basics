@@ -5,16 +5,16 @@
     "logo": "https://raw.githubusercontent.com/bdeanindy/ringcentral-subscription-basics/master/rc4d_logo_2016.png",
     "keywords": [
         "RingCentral",
-        "Ring Central",
         "ringcentral",
-        "ring central",
         "subscription",
         "subscriptions",
         "events",
-        "event driven",
         "pubnub",
         "pubsub"
     ],
+    "scripts": {
+        "postdeploy": "npm install"
+    },
     "addons": [
         {
             "plan": "papertrail:choklad"
@@ -65,26 +65,27 @@
         "SUBSCRIBE_TO_EXTENSION_EVENTS": {
             "description": "Subscribe to status events for extensions? (accepts: true -or- false)",
             "required": true,
-            "value": true
+            "value": "true"
         },
         "SUBSCRIBE_TO_PRESENCE_EVENTS": {
             "description": "Subscribe to presence events for extensions (uses detailedTelephonyStatus and aggregated set to true)? (accepts: true -or- false)",
             "required": true,
-            "value": true
+            "value": "true"
         },
         "SUBSCRIBE_TO_MESSAGE_STORE_EVENTS": {
             "description": "Subscribe to message store events for extensions? (accepts: true -or- false)",
             "required": true,
-            "value": true
+            "value": "true"
         },
         "SUBSCRIBE_TO_PRESENCE_LINE_EVENTS": {
             "description": "Subscribe to presence line events for extensions? (accepts: true -or- false)",
             "required": true,
-            "value": true
+            "value": "true"
         },
         "SUBSCRIBE_TO_INSTANT_MESSAGE_EVENTS": {
             "description": "Subscribe to instant message (sms) events for extensions? (accepts: true -or- false)",
             "required": true,
-            "value": true
+            "value": "true"
         }
-    } }
+    }
+}
