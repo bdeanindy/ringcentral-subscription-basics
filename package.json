@@ -26,7 +26,6 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^2.0.0",
-    "ringcentral": "^2.0.6",
-    "ringcentral-helpers": "^0.1.0"
+    "ringcentral": "ringcentral/ringcentral-js#3.0.0-rc1"
   }
 }

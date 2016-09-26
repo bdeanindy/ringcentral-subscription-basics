@@ -3,7 +3,6 @@
 // Deps
 if('production' !== process.env.NODE_ENV) require('dotenv').config(); // If using this in multi-environment (local and deployed versions) might want to add logic for checking NODE_ENV environment variable to load only if local
 var RC = require('ringcentral');
-var Helpers = require('ringcentral-helpers');
 var http = require('http');
 var util = require('util');
 
@@ -23,7 +22,6 @@ var sdk = new RC({
 
 // APP VARS
 var server = http.createServer();
-var Message = Helpers.message();
 var platform = sdk.platform();
 var subscription = sdk.createSubscription();
 
